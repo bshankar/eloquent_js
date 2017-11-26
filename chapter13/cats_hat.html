@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cat's hat</title>
+    </head>
+    <body>
+        <h1>Cat's hat</h1>
+
+        <img src="img/cat.png" id="cat" style="position: absolute">
+        <img src="img/hat.png" id="hat" style="position: absolute">
+
+        <script>
+         const cat = document.querySelector("#cat")
+         const hat = document.querySelector("#hat")
+         let catAngle = 0, hatAngle = 0, lastTime = null
+         function animate(time) {
+           if (lastTime != null) {
+             catAngle += (time - lastTime) * 0.001
+             hatAngle += (time - lastTime) * 0.003
+           }
+
+           lastTime = time
+           cat.style.top =  200 + (Math.sin(catAngle) * 150) + "px"
+           cat.style.left = 300 + (Math.cos(catAngle) * 200) + "px"
+           hat.style.top =  300 + (Math.sin(catAngle) * 150) + (Math.sin(hatAngle) * 200) + "px"
+           hat.style.left = 375 + (Math.cos(catAngle) * 200) + (Math.cos(hatAngle) * 200) + "px"
+           requestAnimationFrame(animate)
+         }
+         requestAnimationFrame(animate)
+        </script>
+    </body>
+</html>
