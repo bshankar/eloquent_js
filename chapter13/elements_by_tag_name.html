@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>By tag name</title>
+    </head>
+    <body>
+        <h1>Heading with a <span>span</span> element.</h1>
+        <p>A paragraph with <span>one</span>, <span>two</span>
+            spans.</p>
+
+        <script>
+         function byTagName(node, tagName) {
+           const result = []
+           function search(node) {
+             node.childNodes.forEach(c => {
+               if (c.nodeType === document.ELEMENT_NODE) {
+                 if (c.nodeName === tagName.toUpperCase()) result.push(c)
+                 search(c)
+               }
+             })
+           }
+           search(node)
+           return result
+         }
+
+         console.log(byTagName(document.body, "h1").length)
+         // → 1
+         console.log(byTagName(document.body, "span").length)
+         // → 3
+         var para = document.querySelector("p")
+         console.log(byTagName(para, "span").length)
+         // → 2
+        </script>
+    </body>
+</html>
